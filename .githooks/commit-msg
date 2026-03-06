@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Asegurar soporte UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Hook para validar formato de mensajes de commit
 # Formato: tipo(scope): descripción
 # Ejemplo: feat(auth): agregar login con Google

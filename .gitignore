@@ -15,6 +15,7 @@
 
 # Claude Code
 .claude/
+CLAUDE.md
 
 # IDE y editores
 .idea/
