@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Hook para validar formato de mensajes de commit
+# Formato: tipo(scope): descripción
+# Ejemplo: feat(auth): agregar login con Google
+
+commit_msg=$(cat "$1")
+
+# Ignorar commits de merge
+if echo "$commit_msg" | grep -qE "^Merge "; then
+    exit 0
+fi
+
+# Verificar que el mensaje no esté vacío
+if [ -z "$commit_msg" ]; then
+    echo "ERROR: El mensaje de commit no puede estar vacío."
+    exit 1
+fi
+
+# Verificar longitud mínima (al menos 10 caracteres)
+if [ ${#commit_msg} -lt 10 ]; then
+    echo "ERROR: El mensaje de commit debe tener al menos 10 caracteres."
+    exit 1
+fi
+
+# Patrón: tipo(scope): descripción
+# Tipos permitidos: feat, fix, docs, style, refactor, test, chore
+pattern="^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .{3,}"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+    echo ""
+    echo "ERROR: El mensaje de commit no sigue el formato requerido."
+    echo ""
+    echo "Formato: tipo(scope): descripción"
+    echo ""
+    echo "Tipos permitidos:"
+    echo "  feat     - Nueva funcionalidad"
+    echo "  fix      - Corrección de bug"
+    echo "  docs     - Documentación"
+    echo "  style    - Formato (sin cambios de código)"
+    echo "  refactor - Refactorización"
+    echo "  test     - Tests"
+    echo "  chore    - Tareas de mantenimiento"
+    echo ""
+    echo "Ejemplos:"
+    echo "  feat(auth): agregar login con Google"
+    echo "  fix(api): corregir error en validación"
+    echo "  docs: actualizar README"
+    echo ""
+    exit 1
+fi
+
+exit 0

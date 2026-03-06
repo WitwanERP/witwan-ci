@@ -1,0 +1,48 @@
+# CodeIgniter 4
+/vendor/
+/writable/logs/*
+!/writable/logs/index.html
+/writable/cache/*
+!/writable/cache/index.html
+/writable/session/*
+!/writable/session/index.html
+/writable/uploads/*
+!/writable/uploads/index.html
+/writable/debugbar/*
+
+# Archivos de entorno
+.env
+
+# Claude Code
+.claude/
+
+# IDE y editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+
+# Dependencias Node (si se usa)
+node_modules/
+
+# Tests
+/phpunit.result.cache
+.phpunit.result.cache
+coverage/
+
+# Archivos compilados
+*.cache
